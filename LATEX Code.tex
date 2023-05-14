@@ -26,16 +26,16 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 \def\inputGnumericTable{}                                 %%
-\lstset{
-%language=C,
-frame=single, 
-breaklines=true,
-columns=fullflexible
-}
+% \lstset{
+% %language&=C,
+% frame&=single,
+% breaklines&=true,
+% columns&=fullflexible
+% }
 %\lstset{
-%language=tex,
-%frame=single, 
-%breaklines=true
+%language&=tex,
+%frame&=single, 
+%breaklines&=true
 %}
 
 %
@@ -54,10 +54,10 @@ columns=fullflexible
 %\newtheorem{cor}{Corollary}
 \newcommand{\BEQA}{\begin{eqnarray}}
 \newcommand{\EEQA}{\end{eqnarray}}
-\newcommand{\define}{\stackrel{\triangle}{=}}
+\newcommand{\define}{\stackrel{\triangle}{&=}}
 
 \bibliographystyle{IEEEtran}
-\providecommand{\mbf}{\mathbf}
+\providecommand{\mbf}{}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
 \providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
@@ -72,12 +72,12 @@ columns=fullflexible
 \theoremstyle{remark}
 \newtheorem{rem}{Remark}
 \newcommand{\sgn}{\mathop{\mathrm{sgn}}}
-\providecommand{\abs}[1]{\left\vert#1\right\vert}
-\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
-\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\abs}[1]{$\left\vert#1\right\vert$}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}}
+\providecommand{\norm}[1]{$\left\lVert#1\right\rVert$}
 %\providecommand{\norm}[1]{\lVert#1\rVert}
-\providecommand{\mtx}[1]{\mathbf{#1}}
-\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\mtx}[1]{{#1}}
+\providecommand{\mean}[1]{$E\left[ #1 \right]$}
 \providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
 %\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
 \providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
@@ -87,10 +87,10 @@ columns=fullflexible
 \providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
 \newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
 \newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
-\let\vec\mathbf
+\let\vec
 %\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
 %\renewcommand{\thefigure}{\theproblem}
-%\setlist[enumerate,1]{before=\renewcommand\theequation{\theenumi.\arabic{equation}}
+%\setlist[enumerate,1]{before&=\renewcommand\theequation{\theenumi.\arabic{equation}}
 %\counterwithin{equation}{enumi}
 
 
@@ -101,8 +101,6 @@ columns=fullflexible
 %     \def\centbox#1{\makebox[0in]{#1}}
 %     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
 %     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
-
-\usepackage{setspace}
 \vspace{3cm}
 \title{Probability Assignment}
 \author{\LARGE Advait Jain}
@@ -111,38 +109,39 @@ columns=fullflexible
 \begin{document}
 
 \maketitle
-\setstretch{1.5}
 \section*{\Large \textbf{12.13.1.3}}
-\vspace{0.5cm}
 \begin{large}
-If $P(A) = 0.8$, $P(B) = 0.5$, and \\ $P(A\cap B) = 0.32$, find:
+If \pr{A} = 0.8, \pr{B} = 0.5, and \\ \pr{AB} = 0.32, find:
 \begin{enumerate}[label=(\roman*)]
-    \item $P(A)$
-    \item $P(A|B)$
-    \item $P(A\cup B)$
+    \item \pr{AB}
+    \item \pr{A|B}
+    \item \pr{A+B}
 \end{enumerate}
 \end{large}
 
 \section*{\Large \textbf{Solution:}}
-\vspace{0.5cm}
 \begin{large}
 \begin{enumerate}[label=(\roman*)]
-    \item Given, $P(A) = 0.8$ \\
-        We know that $P(B|A) = \dfrac{P(B \cap A)}{P(A)}$
-    
-    \quad $\Rightarrow 0.4 = \dfrac{P(B \cap A)}{0.8}$
-    
-    \quad $\Rightarrow \mathbf{P(B \cap A)} = \mathbf{0.32}$
-    \vspace{0.5cm}
-    \item Similarly, $P(A|B) = \dfrac{P(A \cap B)}{P(B)}$
-    
-    \quad $\Rightarrow P(A|B) = \dfrac{P(A \cap B)}{P(B)}$
-    
-    \quad $\Rightarrow \mathbf{P(A|B)} = \dfrac{0.32}{0.5} = \mathbf{0.64}$
-    \vspace{0.5cm}
-    \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
-    
-    \quad $\Rightarrow \mathbf{P(A \cup B)} = 0.8 + 0.5 - 0.32 = \mathbf{0.98}$
+    \item Given, \pr{A} = 0.8 \\
+        We know that,
+        \begin{align}
+        \pr{B|A}&= \frac{\pr{AB}}{\pr{A}}\\
+      0.4 &= \frac{\pr{AB}}{0.8}\\
+      {\pr{AB}} &= {0.32}
+    \end{align}
+    \item Similarly,
+    \begin{align}
+    \pr{A|B} &= \frac{\pr{AB}}{\pr{B}}\\
+      \pr{A|B} &= \frac{\pr{AB}}{\pr{B}}\\
+      \pr{A|B} &= \frac{0.32}{0.5}
+     \\&= {0.64}
+     \end{align}
+    \item
+    \begin{align}
+    \pr{A+B} &= \pr{A} + \pr{B} - \pr{A-B}\\
+      \pr{A+B} &= 0.8 + 0.5 - 0.32\\
+     &= {0.98}
+     \end{align}
 \end{enumerate}
 \end{large}
 
